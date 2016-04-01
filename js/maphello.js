@@ -50,7 +50,7 @@ $(function() {
 
 /*！！！！！！！！！！！！！！！！！！！！！！！！！！！！MousePosion的开始位置！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！*/
 var mousePositionControl = new ol.control.MousePosition({
-  coordinateFormat: ol.coordinate.createStringXY(3),
+  coordinateFormat: ol.coordinate.createStringXY(6),
   projection: 'EPSG:4326',
   // comment the following two lines to have the mouse position
   // be placed within the map.
@@ -61,7 +61,7 @@ var mousePositionControl = new ol.control.MousePosition({
 
 /*！！！！！！！！！！！！！！！！！！！！！！！！！！！！MousePosion的结束位置！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！*/
 
-
+  
 
 /*！！！！！！！！！！！！！！！！！！！！！！！！！！！！currentPos和全局路径规划结果显示开始位置！！！！！！！！！！！！！！！！！！！！！！！*/
 var image = new ol.style.Circle({
@@ -310,8 +310,8 @@ endMarker.setStyle(endMarker_style);
 /*！！！！！！！！！！！！当前位置current_poi_marker实时显示的Ajax设置初始！定义的开始位置，函数在下面！！！！！！！！！！！！*/
 
 var current_poi_array = [];
-current_poi_array[0] = 120.7771300;
-current_poi_array[1] = 31.5897813;
+current_poi_array[0] = 121.415633;
+current_poi_array[1] = 31.029636;
 var current_poi = ol.proj.fromLonLat(current_poi_array);
 
 /*！！！！！！！！！！！！当前位置current_poi_marker实时显示的Ajax设置初始！定义的结束位置，函数在下面！！！！！！！！！！！！*/
@@ -430,17 +430,17 @@ var map =  new ol.Map(
         }
       ),
       //vectorLayer, /*这边添加了显示当前位置和路径的矢量图层*/
-      new ol.layer.Tile(
-        {
-        extent: [-20037508.3427892,-20037508.3427892,20037508.3427892,20037508.3427892],
-          //preload: Infinity,
-          source: new ol.source.TileArcGISRest(
-          {
-          url: url
-          }
-        )
-      }
-      ),
+      // new ol.layer.Tile(
+      //   {
+      //   extent: [-20037508.3427892,-20037508.3427892,20037508.3427892,20037508.3427892],
+      //     //preload: Infinity,
+      //     source: new ol.source.TileArcGISRest(
+      //     {
+      //     url: url
+      //     }
+      //   )
+      // }
+      // ),
       vectorLayer,  /*这个是当前位置显示和全局路径规划的业务图层*/
       vector,   /*这个是Pen绘制的图层*/
       vector_measure   /*这个是测量工具的图层*/
@@ -810,7 +810,8 @@ $(function() {
    */
   var formatLength = function(line) {
     var length;
-    if (geodesicCheckbox.checked) {
+    if (1){
+    // if (geodesicCheckbox.checked) {
       var coordinates = line.getCoordinates();
       length = 0;
       var sourceProj = map.getView().getProjection();
